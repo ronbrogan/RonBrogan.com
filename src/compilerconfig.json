@@ -1,0 +1,30 @@
+﻿[
+  {
+    "outputFile": "Content/main.css",
+    "inputFile": "Content/main.scss"
+  },
+  {
+    "outputFile": "Content/milligram.css",
+    "inputFile": "Content/milligram.scss"
+  },
+  {
+    "outputFile": "Content/milligram.css",
+    "inputFile": "Content/milligram.less"
+  },
+  {
+    "outputFile": "Content/variables.css",
+    "inputFile": "Content/variables.less"
+  },
+  {
+    "outputFile": "Content/main.css",
+    "inputFile": "Content/main.less"
+  },
+  {
+    "outputFile": "Styles/main.css",
+    "inputFile": "Styles/main.less"
+  },
+  {
+    "outputFile": "Styles/milligram.css",
+    "inputFile": "Styles/milligram.less"
+  }
+]

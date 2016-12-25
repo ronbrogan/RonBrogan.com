@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "Content/normalize.min.css",
+    "inputFiles": [
+      "Content/normalize.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/milligram.min.css",
+    "inputFiles": [
+      "Content/milligram.css"
+    ]
+  }
+]

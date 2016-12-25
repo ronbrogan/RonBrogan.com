@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ron Brogan - Programmer, Maker, Blogger</title>
+    <link rel="stylesheet" href="~/Styles/normalize.min.css">
+    <link rel="stylesheet" href="~/Styles/milligram.min.css">
+    <link rel="stylesheet" href="~/Styles/main.min.css">
+    <link href="~/Scripts/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    
+</head>
+<body onload="prettyPrint();">
+    <div class="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="profile-image"><img src="~/Images/me.png" alt="A picture of myself" /></div>
+                <div class="name">Ron Brogan</div>
+            </div>
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="/articles">Articles</a></li>
+                    <li><a href="https://github.com/ronbrogan" target="_blank">Github</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <script type="text/javascript" src="~/Scripts/prettify/prettify.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
