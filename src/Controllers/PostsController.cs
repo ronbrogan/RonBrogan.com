@@ -6,15 +6,10 @@ using System.Web.Mvc;
 
 namespace RonBrogan.Controllers
 {
-    public class HomeController : Controller
+    public class PostsController : Controller
     {
+        // GET: Posts
         public ActionResult Index()
-        {
-            return View();
-        }
-
-        [Route("about")]
-        public ActionResult About()
         {
             return View();
         }

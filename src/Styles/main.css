@@ -7,30 +7,35 @@
 .clickable:hover {
   cursor: pointer;
 }
+.no-pad {
+  padding: 0;
+}
+.no-margin {
+  margin: 0;
+}
+.no-top-margin {
+  margin-top: 0;
+}
+.no-bottom-margin {
+  margin-bottom: 0;
+}
+hr.accent {
+  border: 2px solid #ffeb3b;
+}
 .navbar {
-  height: 50px;
   background-color: #00bcd4;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
-  clear: both;
   margin-bottom: 10px;
 }
 .navbar .navbar-header {
-  float: left;
-  height: 100%;
+  text-align: center;
+  height: 60%;
   padding: 5px 0;
 }
 .navbar .navbar-header .profile-image {
-  float: left;
-  line-height: 0;
-}
-.navbar .navbar-header .profile-image img {
-  height: 100%;
-  border-radius: 50%;
-  border-color: transparent;
+  display: none;
 }
 .navbar .navbar-header .name {
-  float: left;
-  margin-left: 15px;
   color: #007783;
   font-size: 25px;
   display: inline-block;
@@ -39,7 +44,7 @@
   font-weight: 600;
 }
 .navbar .navbar-links {
-  float: right;
+  text-align: center;
   padding: 5px 0;
 }
 .navbar .navbar-links ul {
@@ -59,4 +64,31 @@
 }
 .navbar .navbar-links ul li a:hover {
   color: #007783;
+}
+/* Non-mobile styles */
+@media (min-width: 80rem) {
+  .navbar {
+    height: 50px;
+  }
+  .navbar .navbar-header {
+    float: left;
+    height: 100%;
+  }
+  .navbar .navbar-header .profile-image {
+    display: block;
+    float: left;
+    line-height: 0;
+  }
+  .navbar .navbar-header .profile-image img {
+    height: 100%;
+    border-radius: 50%;
+    border-color: transparent;
+  }
+  .navbar .navbar-header .name {
+    float: left;
+    margin-left: 15px;
+  }
+  .navbar .navbar-links {
+    float: right;
+  }
 }

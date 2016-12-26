@@ -1,4 +1,6 @@
-﻿.text-right {
+﻿@import (reference) "variables.less";
+
+.text-right {
     text-align: right;
 }
 
@@ -10,4 +12,24 @@
     &:hover {
         cursor: pointer;
     }
+}
+
+.no-pad {
+    padding: 0;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-top-margin {
+    margin-top: 0;
+}
+
+.no-bottom-margin {
+    margin-bottom: 0;
+}
+
+hr.accent {
+    border: 2px solid @accent-color;
 }
