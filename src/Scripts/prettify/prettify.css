@@ -96,21 +96,21 @@ pre.prettyprint {
     background-color: #1E1E1E;
 }
 
-ol.linenums {
+.prettyprint > ol.linenums {
     margin-top: 0;
     margin-bottom: 0;
     counter-reset: item;
     list-style-type: none;
 }
 
-li {
+.prettyprint >  ol > li {
     color: #2b91af;
     margin-bottom:0;
     line-height:normal;
     padding: 2px;
 }
 
-li:before {
+.prettyprint >  ol > li:before {
     display: inline-block;
     margin-right: 10px;
     content: counter(item); 
@@ -128,7 +128,7 @@ li:before {
     min-width: 30px;
 }
 
-li:hover {
+.prettyprint >  ol > li:hover {
     padding: 0;
     border: 2px solid #3b3b3b;
     background-color: #0a0a0a;
