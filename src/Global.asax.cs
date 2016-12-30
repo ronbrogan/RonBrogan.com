@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Core.Configurations;
 
 namespace RonBrogan
 {
@@ -14,6 +15,8 @@ namespace RonBrogan
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            var configuration = AutoMapperConfig.Configure();
+            configuration.AssertConfigurationIsValid();
         }
     }
 }

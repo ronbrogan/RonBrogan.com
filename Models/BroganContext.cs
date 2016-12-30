@@ -7,7 +7,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Authentication;
+using Common.Authentication;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Models.Authentication;
 using Models.BlogItems;

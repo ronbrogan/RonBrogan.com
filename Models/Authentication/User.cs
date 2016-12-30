@@ -6,9 +6,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Authentication;
+using AutoMapper;
+using Common.Authentication;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
+using ViewModels.Authentication;
 
 namespace Models.Authentication
 {
@@ -18,10 +21,9 @@ namespace Models.Authentication
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = new ClaimsIdentity(DefaultAuthenticationTypes.ApplicationCookie);
+            var vm = Mapper.Map<CurrentUserViewModel>(this);
 
-            // Add custom user claims here
-            userIdentity.AddClaim(new Claim("Id", this.Id.ToString()));
-            userIdentity.AddClaim(new Claim("Username", this.UserName));
+            userIdentity.AddClaim(new Claim("CurrentUser", JsonConvert.SerializeObject(vm)));
 
             return userIdentity;
         }

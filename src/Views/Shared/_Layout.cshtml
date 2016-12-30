@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Core;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,9 +20,9 @@
             </div>
             <div class="navbar-links">
                 <ul>
-                    @if (Request.IsAuthenticated)
+                    @if (false)
                     {
-                        <li><a href="/admin/manage">Hello User!</a></li>
+                        <li><a href="/admin/manage">Hello @(CurrentContext.User.Email)!</a></li>
                     }
                     <li><a href="/posts">Posts</a></li>
                     <li><a href="https://github.com/ronbrogan" target="_blank">Github</a></li>

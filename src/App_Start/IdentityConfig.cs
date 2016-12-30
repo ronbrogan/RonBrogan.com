@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
-using Core.Authentication;
+using Core;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -14,6 +14,7 @@ using Microsoft.Owin.Security;
 using Models;
 using RonBrogan.Models;
 using Models.Authentication;
+using Common.Authentication;
 
 namespace RonBrogan
 {
