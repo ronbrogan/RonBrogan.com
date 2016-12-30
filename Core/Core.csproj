@@ -94,7 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurations\AutoMapper.cs" />
+    <Compile Include="Configurations\AutoMapperConfig.cs" />
     <Compile Include="CurrentContext.cs" />
     <Compile Include="Filters\CurrentContextFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

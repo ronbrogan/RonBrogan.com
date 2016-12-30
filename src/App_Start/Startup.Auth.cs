@@ -8,6 +8,7 @@ using Models;
 using Models.Authentication;
 using Owin;
 using RonBrogan.Models;
+using Common;
 
 namespace RonBrogan
 {
@@ -35,7 +36,7 @@ namespace RonBrogan
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<UserManager, User, Guid>(
                         TimeSpan.FromMinutes(30),
                         (manager, user) => user.GenerateUserIdentityAsync(manager),
-                        (identity) => Guid.Parse(identity.GetUserId()))
+                        identity => identity.GetUserIdGuid())
                 }
             });            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);

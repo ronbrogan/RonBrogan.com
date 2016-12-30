@@ -68,7 +68,6 @@
     <Compile Include="Authentication\User.cs" />
     <Compile Include="BlogItems\Blog.cs" />
     <Compile Include="BroganContext.cs" />
-    <Compile Include="DefaultValueCodeGenerator.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="Migrations\201612290749185_InitialMigration.cs" />
     <Compile Include="Migrations\201612290749185_InitialMigration.Designer.cs">

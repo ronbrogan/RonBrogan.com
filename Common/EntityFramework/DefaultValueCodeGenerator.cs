@@ -8,7 +8,7 @@ using System.Data.Entity.Migrations.Design;
 using System.Data.Entity.Migrations.Model;
 using System.Data.Entity.Migrations.Utilities;
 
-namespace Models
+namespace Common.EntityFramework
 {
     public class DefaultValueCodeGenerator : CSharpMigrationCodeGenerator
     {

@@ -1,5 +1,6 @@
 namespace Models.Migrations
 {
+    using Common.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
