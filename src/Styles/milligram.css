@@ -38,7 +38,7 @@ input[type='reset'],
 input[type='submit'] {
   background-color: #00bcd4;
   border: 0.1rem solid #00bcd4;
-  border-radius: .4rem;
+  border-radius: 0.2rem;
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -161,7 +161,7 @@ input[type='submit'].button-clear[disabled]:hover {
 }
 code {
   background: #f4f5f6;
-  border-radius: .4rem;
+  border-radius: 0.2rem;
   font-size: 86%;
   margin: 0 .2rem;
   padding: .2rem .5rem;
@@ -197,7 +197,7 @@ select {
   appearance: none;
   background-color: transparent;
   border: 0.1rem solid #d1d1d1;
-  border-radius: .4rem;
+  border-radius: 0.2rem;
   box-shadow: none;
   box-sizing: inherit;
   height: 3.8rem;

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Core.Authentication;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using RonBrogan.Models;
@@ -28,7 +29,7 @@ namespace RonBrogan.Controllers
         [Route("Admin/Login")]
         public async Task<ActionResult> PostLogin(LoginViewModel data)
         {
-            var userManager = new UserManager<User>(new UserStore<User>(dbContext));
+            var userManager = new UserManager<User, Guid>(new UserStore<User, GuidRole, Guid, GuidUserLogin, GuidUserRole, GuidUserClaim>(dbContext));
             var user = userManager.Find(data.Email, data.Password);
 
             if (user == null)
@@ -43,7 +44,13 @@ namespace RonBrogan.Controllers
             return Redirect("/");
         }
 
-        [Route("Admin/Register")]
+        [Route("Admin/Register"), HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [Route("Admin/Register"), HttpPost]
         public async Task<ActionResult> PostRegister(RegisterViewModel data)
         {
 #if !DEBUG
@@ -53,7 +60,8 @@ namespace RonBrogan.Controllers
             {
                 Email = data.Email,
                 EmailConfirmed = false,
-                UserName = data.Email
+                UserName = data.Email,
+                //Id = Guid.NewGuid()
             };
 
             var manager = Request.GetOwinContext().GetUserManager<UserManager>();

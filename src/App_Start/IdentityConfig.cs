@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using Core.Authentication;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -35,18 +36,18 @@ namespace RonBrogan
     }
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class UserManager : UserManager<User>
+    public class UserManager : UserManager<User,Guid>
     {
-        public UserManager(IUserStore<User> store)
+        public UserManager(IUserStore<User,Guid> store)
             : base(store)
         {
         }
 
         public static UserManager Create(IdentityFactoryOptions<UserManager> options, IOwinContext context) 
         {
-            var manager = new UserManager(new UserStore<User>(context.Get<BroganContext>()));
+            var manager = new UserManager(new UserStore<User, GuidRole, Guid, GuidUserLogin, GuidUserRole, GuidUserClaim>(context.Get<BroganContext>()));
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<User>(manager)
+            manager.UserValidator = new UserValidator<User,Guid>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -69,11 +70,11 @@ namespace RonBrogan
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
-            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<User>
+            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<User,Guid>
             {
                 MessageFormat = "Your security code is {0}"
             });
-            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<User>
+            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<User, Guid>
             {
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
@@ -84,14 +85,14 @@ namespace RonBrogan
             if (dataProtectionProvider != null)
             {
                 manager.UserTokenProvider = 
-                    new DataProtectorTokenProvider<User>(dataProtectionProvider.Create("ASP.NET Identity"));
+                    new DataProtectorTokenProvider<User, Guid>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
         }
     }
 
     // Configure the application sign-in manager which is used in this application.
-    public class ApplicationSignInManager : SignInManager<User, string>
+    public class ApplicationSignInManager : SignInManager<User, Guid>
     {
         public ApplicationSignInManager(UserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)

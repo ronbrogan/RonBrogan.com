@@ -263,8 +263,13 @@
     <None Include="Styles\variables.less" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{1820e043-4900-442d-9528-208ccad437a1}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{1B1CBE91-6CF9-498D-B106-BECC9CC837A5}</Project>
       <Name>Models</Name>

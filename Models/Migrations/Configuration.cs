@@ -10,6 +10,8 @@ namespace Models.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            //SetSqlGenerator("System.Data.SqlClient", new DefaultSqlValueSqlMigrator());
+            CodeGenerator = new DefaultValueCodeGenerator();
         }
 
         protected override void Seed(Models.BroganContext context)

@@ -92,3 +92,18 @@ hr.accent {
     float: right;
   }
 }
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='url'],
+textarea,
+select {
+  border-radius: 0;
+  border-bottom-width: 0.2rem;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
