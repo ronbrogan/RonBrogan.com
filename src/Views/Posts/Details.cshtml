@@ -1,0 +1,15 @@
+﻿@using Models.BlogItems;
+@model Blog
+
+<div class="container">
+    <div class="row">
+        <div class="column">
+            <div class="blog-post">
+                <span class="h1">@Model.Title</span>
+                <small>@Model.CreatedBy.UserName - @Model.DateCreated.ToShortDateString()</small>
+                <hr class="accent" />
+                <div>@Html.Raw(Model.BodyHtml)</div>
+            </div>
+        </div>
+    </div>
+</div>

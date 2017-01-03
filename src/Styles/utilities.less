@@ -33,3 +33,37 @@
 hr.accent {
     border: 2px solid @accent-color;
 }
+
+h1, .h1, 
+h2, .h2, 
+h3, .h3, 
+h4, .h4 {
+    color: @primary-color;
+    display: block;
+    line-height: normal;
+    margin-bottom: 0.3rem;
+
+    a {
+        color: @primary-color;
+
+        &:hover,&:focus {
+            color: @darker-primary-color;
+        }
+    }
+}
+
+h1, .h1 {
+    font-size: xx-large;
+}
+
+h2, .h2 {
+    font-size: x-large;
+}
+
+h3, .h3 {
+    font-size: larger;
+}
+
+h4, .h4 {
+    font-size: large;
+}

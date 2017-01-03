@@ -24,16 +24,14 @@
                     {
                         <li><a href="/admin/manage">Hello @(CurrentContext.User.Email)!</a></li>
                     }
-                    <li><a href="/posts">Posts</a></li>
+                    <li><a href="/posts">Explore</a></li>
                     <li><a href="https://github.com/ronbrogan" target="_blank">Github</a></li>
-                    <li><a href="/about">About</a></li>
+                    <li><a href="/about">README</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container">
-        @RenderBody()
-    </div>
+    @RenderBody()
     <script type="text/javascript" src="~/Scripts/prettify/prettify.js"></script>
     @RenderSection("scripts", required: false)
 </body>

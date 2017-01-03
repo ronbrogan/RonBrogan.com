@@ -5,14 +5,21 @@ using System.Web;
 using System.Web.Mvc;
 using Models;
 using Models.BlogItems;
+using System.Data.Entity;
 
 namespace RonBrogan.Controllers
 {
     public class HomeController : Controller
     {
+        private BroganContext db = new BroganContext();
+
         public ActionResult Index()
         {
-            return View();
+            var posts = db.BlogPosts
+                .Include(b => b.CreatedBy)
+                .Take(5).ToList();
+
+            return View(posts);
         }
 
         [Route("about")]

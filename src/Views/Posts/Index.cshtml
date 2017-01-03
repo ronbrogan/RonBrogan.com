@@ -1,11 +1,32 @@
-﻿<div class="container">
+﻿@using Models.BlogItems;
+@model List<Blog>
+
+
+<div class="container">
     <div class="row">
-        <div class="column column-25">
-            <h3 class="no-bottom-margin">Series</h3>
-            <hr class="accent no-top-margin" />
+        <div class="column column-25 blog-post-summary column-full-small">
+            <h1>Categories</h1>
+            <hr class="accent" />
         </div>
-        <div class="column column-75">
-            {{Content goes here, yo}}
+        <div class="column column-75 column-full-small">
+            @foreach (var blog in Model)
+            {
+                <div class="blog-post-summary">
+                    <h1><a href="/posts/@blog.Id">@blog.Title</a></h1>
+                    <hr class="accent"/>
+                    @if (!string.IsNullOrWhiteSpace(blog.ImageUrl))
+                    {
+                        <img src="@blog.ImageUrl" />
+                    }
+                    <p>@blog.TeaserText</p>
+                    <div class="creation-stamp">
+                        <small>@blog.CreatedBy.UserName - @blog.DateCreated.ToShortDateString()</small>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+            }
         </div>
     </div>
 </div>

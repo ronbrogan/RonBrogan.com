@@ -36,8 +36,8 @@ button,
 input[type='button'],
 input[type='reset'],
 input[type='submit'] {
-  background-color: #00bcd4;
-  border: 0.1rem solid #00bcd4;
+  background-color: #900900;
+  border: 0.1rem solid #900900;
   border-radius: 0.2rem;
   color: #fff;
   cursor: pointer;
@@ -63,8 +63,8 @@ input[type='reset']:focus,
 input[type='reset']:hover,
 input[type='submit']:focus,
 input[type='submit']:hover {
-  background-color: #007783;
-  border-color: #007783;
+  background-color: #490500;
+  border-color: #490500;
   color: #fff;
   outline: 0;
 }
@@ -86,8 +86,8 @@ input[type='reset'][disabled]:focus,
 input[type='reset'][disabled]:hover,
 input[type='submit'][disabled]:focus,
 input[type='submit'][disabled]:hover {
-  background-color: #00bcd4;
-  border-color: #00bcd4;
+  background-color: #900900;
+  border-color: #900900;
 }
 .button.button-outline,
 button.button-outline,
@@ -95,7 +95,7 @@ input[type='button'].button-outline,
 input[type='reset'].button-outline,
 input[type='submit'].button-outline {
   background-color: transparent;
-  color: #00bcd4;
+  color: #900900;
 }
 .button.button-outline:focus,
 .button.button-outline:hover,
@@ -108,8 +108,8 @@ input[type='reset'].button-outline:hover,
 input[type='submit'].button-outline:focus,
 input[type='submit'].button-outline:hover {
   background-color: transparent;
-  border-color: #007783;
-  color: #007783;
+  border-color: #490500;
+  color: #490500;
 }
 .button.button-outline[disabled]:focus,
 .button.button-outline[disabled]:hover,
@@ -122,7 +122,7 @@ input[type='reset'].button-outline[disabled]:hover,
 input[type='submit'].button-outline[disabled]:focus,
 input[type='submit'].button-outline[disabled]:hover {
   border-color: inherit;
-  color: #00bcd4;
+  color: #900900;
 }
 .button.button-clear,
 button.button-clear,
@@ -131,7 +131,7 @@ input[type='reset'].button-clear,
 input[type='submit'].button-clear {
   background-color: transparent;
   border-color: transparent;
-  color: #00bcd4;
+  color: #900900;
 }
 .button.button-clear:focus,
 .button.button-clear:hover,
@@ -145,7 +145,7 @@ input[type='submit'].button-clear:focus,
 input[type='submit'].button-clear:hover {
   background-color: transparent;
   border-color: transparent;
-  color: #007783;
+  color: #490500;
 }
 .button.button-clear[disabled]:focus,
 .button.button-clear[disabled]:hover,
@@ -157,7 +157,7 @@ input[type='reset'].button-clear[disabled]:focus,
 input[type='reset'].button-clear[disabled]:hover,
 input[type='submit'].button-clear[disabled]:focus,
 input[type='submit'].button-clear[disabled]:hover {
-  color: #00bcd4;
+  color: #900900;
 }
 code {
   background: #f4f5f6;
@@ -169,7 +169,7 @@ code {
 }
 pre {
   background: #f4f5f6;
-  border-left: 0.3rem solid #00bcd4;
+  border-left: 0.3rem solid #900900;
   overflow-y: hidden;
 }
 pre > code {
@@ -213,7 +213,7 @@ input[type='text']:focus,
 input[type='url']:focus,
 textarea:focus,
 select:focus {
-  border-color: #00bcd4;
+  border-color: #900900;
   outline: 0;
 }
 select {
@@ -375,7 +375,7 @@ input[type='radio'] {
   -ms-grid-row-align: center;
   align-self: center;
 }
-@media (min-width: 40rem) {
+@media (min-width: 80rem) {
   .row {
     flex-direction: row;
     margin-left: -1rem;
@@ -387,7 +387,7 @@ input[type='radio'] {
   }
 }
 a {
-  color: #00bcd4;
+  color: #900900;
   text-decoration: none;
 }
 a:focus,

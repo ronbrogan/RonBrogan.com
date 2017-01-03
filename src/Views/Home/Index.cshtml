@@ -1,13 +1,22 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-<div style="height: 100px;"></div>
-<div class="row">
-    <div class="column">
-        <h2 class="no-margin">Hello, I'm Ron</h2>
-        <hr class="accent no-top-margin" />
-        <h4>
-            I'm a software developer by day and a serial hobbyist by night. Learn new things with me.
-        </h4>
+﻿@model List<Models.BlogItems.Blog>
+<div class="banner navbar-buddy">
+    <h1 class="no-margin">Hello, I'm Ron</h1>
+    <h2 style="color: #222">
+        I'm a software developer by day and a serial hobbyist by night. Learn new things with me.
+    </h2>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="column">
+            @foreach (var blog in Model)
+            {
+                <div class="blog-post">
+                    <span class="h1">@blog.Title</span>
+                    <small>@blog.CreatedBy.UserName - @blog.DateCreated.ToShortDateString()</small>
+                    <hr class="accent" />
+                    <div>@Html.Raw(blog.BodyHtml)</div>
+                </div>
+            }
+        </div>
     </div>
 </div>
