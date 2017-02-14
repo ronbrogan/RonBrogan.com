@@ -61,6 +61,7 @@
     <Compile Include="Authentication\GuidUserClaim.cs" />
     <Compile Include="Authentication\GuidUserLogin.cs" />
     <Compile Include="Authentication\GuidUserRole.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="EntityFramework\DefaultValueCodeGenerator.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

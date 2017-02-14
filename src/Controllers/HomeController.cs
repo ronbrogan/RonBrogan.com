@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Models;
 using Models.BlogItems;
 using System.Data.Entity;
+using AutoMapper;
+using ViewModels.BlogItems;
 
 namespace RonBrogan.Controllers
 {
@@ -16,10 +18,10 @@ namespace RonBrogan.Controllers
         public ActionResult Index()
         {
             var posts = db.BlogPosts
-                .Include(b => b.CreatedBy)
+                .OrderByDescending(b => b.DateCreated)
                 .Take(5).ToList();
 
-            return View(posts);
+            return View(posts.Select(Mapper.Map<BlogViewModel>));
         }
 
         [Route("about")]

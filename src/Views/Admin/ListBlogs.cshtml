@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ViewModels.BlogItems.BlogViewModel>
+
+<div class="container">
+    <div class="row">
+        <div class="column column-25 column-offset-75 text-right"><a class="button" href="/Admin/CreateBlog">New Blog</a></div>
+    </div>
+    <div class="row">
+        <div class="column">
+            @foreach (var blog in Model)
+            {
+                <div class="blog-post-summary">
+                    <h1>
+                        <a href="/Admin/EditBlog/@blog.Id">@blog.Title</a>
+                    </h1>
+                    <hr class="accent"/>
+                    @if (!string.IsNullOrWhiteSpace(blog.ImageUrl))
+                    {
+                        <img src="@blog.ImageUrl"/>
+                    }
+                    <p>@blog.TeaserText</p>
+                    <div class="creation-stamp">
+                        <small>@blog.CreatedBy.UserName - @blog.DateCreated.ToShortDateString()</small>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

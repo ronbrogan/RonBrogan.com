@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using AutoMapper;
+using ViewModels.BlogItems;
 
 namespace RonBrogan.Controllers
 {
@@ -15,20 +17,18 @@ namespace RonBrogan.Controllers
         public ActionResult Index()
         {
             var posts = db.BlogPosts
-                .Include(b => b.CreatedBy)
                 .Take(5).ToList();
 
-            return View(posts);
+            return View(posts.Select(Mapper.Map<BlogViewModel>));
         }
 
         [Route("posts/{blogId}")]
         public ActionResult Details(Guid blogId)
         {
             var post = db.BlogPosts
-                .Include(b => b.CreatedBy)
                 .FirstOrDefault(b => b.Id == blogId);
 
-            return View("Details", post);
+            return View("Details", Mapper.Map<BlogViewModel>(post));
         }
     }
 }

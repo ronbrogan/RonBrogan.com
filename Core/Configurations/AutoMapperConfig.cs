@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Models.Authentication;
+using Models.BlogItems;
 using ViewModels.Authentication;
+using ViewModels.BlogItems;
 using MapAction = System.Action<AutoMapper.IMapperConfigurationExpression>;
 
 namespace Core.Configurations
@@ -22,7 +24,8 @@ namespace Core.Configurations
 
             MapAction miscMaps = config =>
             {
-
+                config.CreateMap<User, UserSimpleViewModel>();
+                config.CreateMap<Blog, BlogViewModel>();
             };
 
             Initialize(authMaps, miscMaps);

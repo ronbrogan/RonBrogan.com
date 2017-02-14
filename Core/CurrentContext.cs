@@ -18,10 +18,10 @@ namespace Core
         {
             get
             {
-                if(_user == null)
-                {
-                    throw new Exception("Current user has not be initialized");
-                }
+                //if(_user == null)
+                //{
+                //    throw new Exception("Current user has not be initialized");
+                //}
 
                 return _user;
             }

@@ -18,6 +18,6 @@ namespace Models
         public DateTime DateCreated { get; set; }
         [ForeignKey(nameof(CreatedBy))]
         public Guid CreatedBy_Id { get; set; }
-        public User CreatedBy { get; set; }
+        public virtual User CreatedBy { get; set; }
     }
 }
