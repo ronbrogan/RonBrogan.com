@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Models;
 using Models.BlogItems;
 using System.Data.Entity;
+using System.Threading.Tasks;
 using AutoMapper;
 using ViewModels.BlogItems;
 
@@ -15,11 +16,11 @@ namespace RonBrogan.Controllers
     {
         private BroganContext db = new BroganContext();
 
-        public ActionResult Index()
+        public async Task <ActionResult> Index()
         {
-            var posts = db.BlogPosts
+            var posts = await db.BlogPosts
                 .OrderByDescending(b => b.DateCreated)
-                .Take(5).ToList();
+                .Take(5).ToListAsync();
 
             return View(posts.Select(Mapper.Map<BlogViewModel>));
         }

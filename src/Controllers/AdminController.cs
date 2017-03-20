@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -88,15 +89,20 @@ namespace RonBrogan.Controllers
         }
 
         [Route("Admin/ListBlogs"), HttpGet]
-        public ActionResult ListBlogs(int page = 1)
+        public async Task<ActionResult> ListBlogs(int page = 1)
         {
             var pageCount = 10;
-
-            var blogs = dbContext.BlogPosts
+            var total = await dbContext.BlogPosts.CountAsync();
+            var blogs = await dbContext.BlogPosts
                 .OrderByDescending(b => b.DateCreated)
-                .Skip((page - 1) * pageCount).Take(pageCount).ToList();
+                .Skip((page - 1) * pageCount).Take(pageCount).ToListAsync();
 
-            return View(blogs.Select(Mapper.Map<BlogViewModel>));
+            return View(new ListBlogsViewModel
+            {
+                Items = blogs.Select(Mapper.Map<BlogViewModel>),
+                Page = page,
+                Total = total
+            });
         }
 
         [Route("Admin/CreateBlog"), HttpGet]
@@ -106,7 +112,7 @@ namespace RonBrogan.Controllers
         }
 
         [Route("Admin/CreateBlog"), HttpPost]
-        public ActionResult PostCreateBlog(CreateBlogViewModel blog)
+        public async Task<ActionResult> PostCreateBlog(CreateBlogViewModel blog)
         {
             var newBlog = new Blog()
             {
@@ -127,24 +133,29 @@ namespace RonBrogan.Controllers
             }
 
             dbContext.BlogPosts.Add(newBlog);
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
 
             return Redirect("/Admin/ListBlogs");
         }
 
         [Route("Admin/EditBlog/{blogId}"), HttpGet]
-        public ActionResult EditBlog(Guid blogId)
+        public async Task<ActionResult> EditBlog(Guid blogId)
         {
-            var blog = dbContext.BlogPosts
-                .FirstOrDefault(b => b.Id == blogId);
+            var blog = await dbContext.BlogPosts
+                .FirstOrDefaultAsync(b => b.Id == blogId);
 
             return View(Mapper.Map<BlogViewModel>(blog));
         }
 
-        [Route("Admin/EditBlog"), HttpPost]
-        public ActionResult PostEditBlog(Guid blogId, BlogViewModel blog)
+        [Route("Admin/EditBlog/{blogId}"), HttpPost]
+        public async Task<ActionResult> PostEditBlog(Guid blogId, EditBlogViewModel blog)
         {
-            return Redirect("Admin/ListBlogs");   
+            var entity = await dbContext.BlogPosts.FirstOrDefaultAsync();
+
+            dbContext.Entry(entity).CurrentValues.SetValues(blog);
+            await dbContext.SaveChangesAsync();
+
+            return Redirect("/Admin/ListBlogs");   
         }
     }
 }

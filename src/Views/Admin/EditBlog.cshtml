@@ -1,10 +1,68 @@
 ﻿@model ViewModels.BlogItems.BlogViewModel
 
+<script src="~/Scripts/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "[tinymce-editor]",
+        height: 500,
+        theme: 'modern',
+        plugins: [
+          'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+          'searchreplace wordcount visualblocks visualchars code fullscreen',
+          'insertdatetime media nonbreaking save table contextmenu directionality',
+          'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+        ],
+        toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor | codesample code',
+        image_advtab: true,
+        init_instance_callback: "initTinyMCEContent"
+    });
 
+    function ready(fn) {
+        if (document.readyState != 'loading') {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+
+    var initTinyMCEContent = function initTinyMCEContent(editor) {
+        editor.setContent('@Html.Raw((Model.BodyHtml??"").Replace("'", "\'").Replace("\r\n", "'+\r\n'"))');
+    };
+
+</script>
 <div class="container">
     <div class="row">
         <div class="column">
-            
+            <h3 class="no-bottom-margin">Edit Post</h3>
+            <hr class="accent no-top-margin" style="width: 50%" />
+            <form method="post" enctype="multipart/form-data">
+                <label>
+                    Title
+                    <input type="text" name="Title" value="@Model.Title" />
+                </label>
+                <div class="row">
+                    <div class="column column-50">
+                        <label>
+                            Snippet
+                            <input type="text" name="TeaserText" value="@Model.TeaserText" />
+                        </label>
+                    </div>
+                    <div class="column column-50">
+                        <label>
+                            Thumbnail URL<br />
+                            <input type="text" name="Thumbnail" value="@Model.ImageUrl" />
+                        </label>
+                    </div>
+                </div>
+                <label>
+                    Body
+                    <textarea name="BodyHtml" tinymce-editor value="@Model.BodyHtml"></textarea>
+                </label>
+
+                <p class="text-right">
+                    <button type="submit" class="button">Submit</button>
+                </p>
+            </form>
         </div>
     </div>
 </div>
