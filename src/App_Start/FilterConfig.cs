@@ -8,7 +8,8 @@ namespace RonBrogan
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new ErrorHandler.AiHandleErrorAttribute());
+#if !DEBUG            filters.Add(new ErrorHandler.AiHandleErrorAttribute());
+#endif
             filters.Add(new CurrentContextFilter());
         }
     }
