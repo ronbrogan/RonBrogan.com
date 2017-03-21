@@ -17,18 +17,9 @@
         init_instance_callback: "initTinyMCEContent"
     });
 
-    function ready(fn) {
-        if (document.readyState != 'loading') {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
-
     var initTinyMCEContent = function initTinyMCEContent(editor) {
-        editor.setContent('@Html.Raw((Model.BodyHtml??"").Replace("'", "\'").Replace("\r\n", "'+\r\n'"))');
+        editor.setContent('@Html.Raw((Model.BodyHtml??"").Replace("'", "\\'").Replace("\r\n", "'+\r\n'"))');
     };
-
 </script>
 <div class="container">
     <div class="row">

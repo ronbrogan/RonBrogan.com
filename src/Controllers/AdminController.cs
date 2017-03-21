@@ -32,7 +32,7 @@ namespace RonBrogan.Controllers
         [Route("Admin"), HttpGet]
         public ActionResult Index()
         {
-            if (CurrentContext.User == null)
+            if(!Request.IsAuthenticated)
                 return View();
            
             return Redirect("/Admin/ListBlogs");
@@ -57,10 +57,22 @@ namespace RonBrogan.Controllers
             return Redirect("/Admin/ListBlogs");
         }
 
+        [Route("Admin/Logout"), HttpGet]
+        public ActionResult Logout()
+        {
+            var owin = Request.GetOwinContext();
+            var authManager = owin.Authentication;
+            authManager.SignOut();
+            return Redirect("/");
+        }
+
         [AllowAnonymous]
         [Route("Admin/Register"), HttpGet]
         public ActionResult Register()
         {
+#if !DEBUG
+            throw new Exception("Registration disabled");
+#endif
             return View();
         }
 
@@ -150,7 +162,7 @@ namespace RonBrogan.Controllers
         [Route("Admin/EditBlog/{blogId}"), HttpPost]
         public async Task<ActionResult> PostEditBlog(Guid blogId, EditBlogViewModel blog)
         {
-            var entity = await dbContext.BlogPosts.FirstOrDefaultAsync();
+            var entity = await dbContext.BlogPosts.FirstOrDefaultAsync(b => b.Id == blogId);
 
             dbContext.Entry(entity).CurrentValues.SetValues(blog);
             await dbContext.SaveChangesAsync();
