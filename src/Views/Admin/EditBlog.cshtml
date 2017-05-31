@@ -18,7 +18,7 @@
     });
 
     var initTinyMCEContent = function initTinyMCEContent(editor) {
-        editor.setContent('@Html.Raw((Model.BodyHtml??"").Replace("'", "\\'").Replace("\r\n", "'+\r\n'"))');
+        editor.setContent(atob('@Html.Raw(Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(Model.BodyHtml??"")))'));
     };
 </script>
 <div class="container">
