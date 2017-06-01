@@ -179,19 +179,28 @@ code {
   margin: 0 .2rem;
   padding: .2rem .5rem;
   white-space: pre;
+  background-color: #eee;
 }
 
 pre {
-  background: #f4f5f6;
-  border-left: 0.3rem solid @primary-color;
-  overflow-y: hidden;
+    background: #f4f5f6;
+    border-left: 0.3rem solid @primary-color;
+    overflow-y: hidden;
+
+    ul, ol {
+        padding-left: 0;
+    }
 }
 
-pre > code {
+pre > code{
   border-radius: 0;
   display: block;
   padding: 1rem 1.5rem;
   white-space: pre;
+}
+
+pre code {
+    background-color: unset;
 }
 
 hr {
@@ -457,7 +466,6 @@ ol,
 ul {
   list-style: none;
   margin-top: 0;
-  padding-left: 0;
 }
 
 dl dl,
