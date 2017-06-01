@@ -34,6 +34,9 @@
       <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EFCache, Version=1.1.0.0, Culture=neutral, PublicKeyToken=46c4868af4307d2c, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Cache.1.1.0\lib\net45\EFCache.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -73,6 +76,10 @@
     <Compile Include="Migrations\201612290749185_InitialMigration.Designer.cs">
       <DependentUpon>201612290749185_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706010205507_AddUserFullName.cs" />
+    <Compile Include="Migrations\201706010205507_AddUserFullName.Designer.cs">
+      <DependentUpon>201706010205507_AddUserFullName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -83,6 +90,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612290749185_InitialMigration.resx">
       <DependentUpon>201612290749185_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706010205507_AddUserFullName.resx">
+      <DependentUpon>201706010205507_AddUserFullName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -30,5 +30,8 @@ namespace Models.Authentication
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public override Guid Id { get; set; }
+
+        [MaxLength(100)]
+        public string FullName { get; set; }
     }
 }
