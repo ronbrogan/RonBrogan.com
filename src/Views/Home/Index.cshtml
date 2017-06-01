@@ -11,7 +11,7 @@
             @foreach (var blog in Model)
             {
                 <div class="blog-post">
-                    <span class="h1">@blog.Title</span>
+                    <span class="h1">@Html.ActionLink(blog.Title, "Details", "Posts", new { blogId = blog.Id }, null)</span>
                     <small>@blog.CreatedBy.UserName - @blog.DateCreated.ToShortDateString()</small>
                     <hr class="accent" />
                     <div>@Html.Raw(blog.BodyHtml)</div>
