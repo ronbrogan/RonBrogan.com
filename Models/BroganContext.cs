@@ -24,7 +24,8 @@ namespace Models
 
         public BroganContext() : base("BroganContext")
         {
-
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BroganContext, Models.Migrations.Configuration>());
+            Database.Initialize(false);
         }
 
         public static BroganContext Create()
