@@ -6,28 +6,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Models.Authentication;
 using ViewModels.Authentication;
+using System.Web;
 
 namespace Core
 {
     public static class CurrentContext
     {
-        [ThreadStatic]
-        private static CurrentUserViewModel _user;
+        private static string HttpContextKey = "CurrentUser";
+
 
         public static CurrentUserViewModel User
         {
             get
             {
-                //if(_user == null)
-                //{
-                //    throw new Exception("Current user has not be initialized");
-                //}
-
-                return _user;
+                return (CurrentUserViewModel)HttpContext.Current.Items[HttpContextKey];
             }
             set
             {
-                _user = value;
+                HttpContext.Current.Items[HttpContextKey] = value;
             }
         }
 

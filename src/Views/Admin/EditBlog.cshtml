@@ -27,10 +27,22 @@
             <h3 class="no-bottom-margin">Edit Post</h3>
             <hr class="accent no-top-margin" style="width: 50%" />
             <form method="post" enctype="multipart/form-data">
-                <label>
-                    Title
-                    <input type="text" name="Title" value="@Model.Title" />
-                </label>
+                <div class="row">
+                    <div class="column column-100">
+                        <label>
+                            Title
+                            <input type="text" name="Title" value="@Model.Title" />
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column column-100">
+                        <label>
+                            SEO Metadata
+                            <input type="text" name="Metadata" value="@Model.Metadata" />
+                        </label>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="column column-50">
                         <label>
@@ -38,10 +50,16 @@
                             <input type="text" name="TeaserText" value="@Model.TeaserText" />
                         </label>
                     </div>
-                    <div class="column column-50">
+                    <div class="column column-40">
                         <label>
                             Thumbnail URL<br />
-                            <input type="text" name="Thumbnail" value="@Model.ImageUrl" />
+                            <input type="text" name="ImageUrl" value="@Model.ImageUrl" />
+                        </label>
+                    </div>
+                    <div class="column column-10">
+                        <label>
+                            Public<br />
+                            @Html.CheckBoxFor(m => m.Public)
                         </label>
                     </div>
                 </div>
@@ -49,7 +67,27 @@
                     Body
                     <textarea name="BodyHtml" tinymce-editor value="@Model.BodyHtml"></textarea>
                 </label>
-
+                <div class="row">
+                    <div class="column column-100">
+                        <label>
+                            Categories
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <div class="column column-20">
+                            <input type="text" name="Categories[]" value="@category" />
+                        </div>
+                    }
+                    @for (var i = 0; i < 5 - Model.Categories.Length; i++)
+                    {
+                        <div class="column column-20">
+                            <input type="text" name="Categories[]" />
+                        </div>
+                    }
+                </div>
                 <p class="text-right">
                     <button type="submit" class="button">Submit</button>
                 </p>

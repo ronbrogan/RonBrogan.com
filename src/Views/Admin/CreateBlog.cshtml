@@ -1,14 +1,16 @@
-﻿<script src="~/Scripts/tinymce/tinymce.min.js"></script>
+﻿@model ViewModels.BlogItems.CreateBlogViewModel
+
+<script src="~/Scripts/tinymce/tinymce.min.js"></script>
 <script type="text/javascript">
     tinymce.init({
         selector: "[tinymce-editor]",
         height: 500,
         theme: 'modern',
         plugins: [
-          'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-          'searchreplace wordcount visualblocks visualchars code fullscreen',
-          'insertdatetime media nonbreaking save table contextmenu directionality',
-          'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen',
+            'insertdatetime media nonbreaking save table contextmenu directionality',
+            'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
         ],
         toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor | codesample code',
         image_advtab: true
@@ -19,12 +21,24 @@
     <div class="row">
         <div class="column">
             <h3 class="no-bottom-margin">New Blog Post</h3>
-            <hr class="accent no-top-margin" style="width: 50%"/>
+            <hr class="accent no-top-margin" style="width: 50%" />
             <form method="post" enctype="multipart/form-data">
-                <label>
-                    Title
-                    <input type="text" name="Title"/>
-                </label>
+                <div class="row">
+                    <div class="column column-100">
+                        <label>
+                            Title
+                            <input type="text" name="Title" />
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column column-100">
+                        <label>
+                            SEO Metadata
+                            <input type="text" name="Metadata" />
+                        </label>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="column column-50">
                         <label>
@@ -32,10 +46,16 @@
                             <input type="text" name="TeaserText" />
                         </label>
                     </div>
-                    <div class="column column-50">
+                    <div class="column column-40">
                         <label>
-                            Thumbnail URL<br />
+                            Thumbnail<br />
                             <input type="file" name="Thumbnail" />
+                        </label>
+                    </div>
+                    <div class="column column-10">
+                        <label>
+                            Public<br />
+                            @Html.CheckBoxFor(m => m.Public)
                         </label>
                     </div>
                 </div>
@@ -43,7 +63,21 @@
                     Body
                     <textarea name="BodyHtml" tinymce-editor></textarea>
                 </label>
-
+                <div class="row">
+                    <div class="column column-100">
+                        <label>
+                            Categories
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    @for (var i = 0; i < 5; i++)
+                    {
+                        <div class="column column-20">
+                            <input type="text" name="Categories[]" />
+                        </div>
+                    }
+                </div>
                 <p class="text-right">
                     <button type="submit" class="button">Submit</button>
                 </p>

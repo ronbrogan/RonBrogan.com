@@ -21,6 +21,7 @@ namespace Models
     public class BroganContext : IdentityDbContext<User, GuidRole, Guid, GuidUserLogin, GuidUserRole, GuidUserClaim>
     {
         public DbSet<Blog> BlogPosts { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         public BroganContext() : base("BroganContext")
         {
@@ -36,15 +37,14 @@ namespace Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<GuidUserRole>().ToTable("UserRoles");
             modelBuilder.Entity<GuidRole>().ToTable("Roles");
             modelBuilder.Entity<GuidUserLogin>().ToTable("UserLogins");
             modelBuilder.Entity<GuidUserClaim>().ToTable("UserClaims");
-
         }
-
     }
 
     public class Configuration : DbConfiguration

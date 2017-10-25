@@ -19,6 +19,12 @@
                     <span class="h1">@Html.ActionLink(blog.Title, "Details", "Posts", new { blogId = blog.Id }, null)</span>
                     <small>@blog.CreatedBy.FullName - @blog.DateCreated.ToShortDateString()</small>
                     <hr class="accent" />
+                    <p class="no-margin">
+                        @foreach (var category in blog.Categories)
+                        {
+                            <a href="/posts?category=@Url.Encode(category)" class="category-tag">@category</a>
+                        }
+                    </p>
                     <div>@Html.Raw(blog.BodyHtml)</div>
                 </div>
             }

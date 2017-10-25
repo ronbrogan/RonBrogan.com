@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using ViewModels.Authentication;
 
@@ -24,5 +20,11 @@ namespace ViewModels.BlogItems
         public DateTime DateCreated { get; set; }
 
         public UserSimpleViewModel CreatedBy { get; set; }
+
+        public string Metadata { get; set; }
+
+        public bool Public { get; set; }
+
+        public string[] Categories { get; set; }
     }
 }

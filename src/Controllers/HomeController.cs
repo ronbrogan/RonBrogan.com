@@ -19,6 +19,8 @@ namespace RonBrogan.Controllers
         public async Task <ActionResult> Index()
         {
             var posts = await db.BlogPosts
+                .Include(b => b.Categories)
+                .Where(b => b.Public)
                 .OrderByDescending(b => b.DateCreated)
                 .Take(5).ToListAsync();
 

@@ -25,7 +25,9 @@ namespace Core.Configurations
             MapAction miscMaps = config =>
             {
                 config.CreateMap<User, UserSimpleViewModel>();
-                config.CreateMap<Blog, BlogViewModel>();
+                config.CreateMap<Blog, BlogViewModel>()
+                    .ForMember(dest => dest.Categories, opts => opts.MapFrom(src => src.Categories.Select(c => c.CategoryName).ToArray()));
+                config.CreateMap<Category, CategoryViewModel>();
             };
 
             Initialize(authMaps, miscMaps);

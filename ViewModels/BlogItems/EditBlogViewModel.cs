@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace ViewModels.BlogItems
 {
@@ -18,5 +12,11 @@ namespace ViewModels.BlogItems
 
         [AllowHtml]
         public string BodyHtml { get; set; }
+
+        public string Metadata { get; set; }
+
+        public bool Public { get; set; }
+
+        public string[] Categories { get; set; }
     }
 }

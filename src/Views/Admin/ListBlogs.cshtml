@@ -30,6 +30,12 @@
                     {
                         <img src="/StaticAssets/@blog.ImageUrl" />
                     }
+                    <p class="no-margin">
+                        @foreach(var category in blog.Categories)
+                        {
+                            <a href="/posts?category=@Url.Encode(category)" class="category-tag">@category</a>
+                        }
+                    </p>
                     <p>@blog.TeaserText</p>
                     <div class="creation-stamp">
                         <small>@blog.CreatedBy.FullName - @blog.DateCreated.ToShortDateString()</small>

@@ -79,8 +79,10 @@
     <Compile Include="Authentication\CurrentUserViewModel.cs" />
     <Compile Include="Authentication\UserSimpleViewModel.cs" />
     <Compile Include="BlogItems\BlogViewModel.cs" />
+    <Compile Include="BlogItems\CategoryViewModel.cs" />
     <Compile Include="BlogItems\CreateBlogViewModel.cs" />
     <Compile Include="BlogItems\EditBlogViewModel.cs" />
+    <Compile Include="BlogItems\ExplorePostsViewModel.cs" />
     <Compile Include="BlogItems\ListBlogsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

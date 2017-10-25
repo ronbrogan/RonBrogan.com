@@ -106,6 +106,7 @@ namespace RonBrogan.Controllers
             var pageCount = 10;
             var total = await dbContext.BlogPosts.CountAsync();
             var blogs = await dbContext.BlogPosts
+                .Include(b => b.Categories)
                 .OrderByDescending(b => b.DateCreated)
                 .Skip((page - 1) * pageCount).Take(pageCount).ToListAsync();
 
@@ -132,7 +133,15 @@ namespace RonBrogan.Controllers
                 CreatedBy_Id = CurrentContext.User.Id,
                 BodyHtml = blog.BodyHtml,
                 TeaserText = blog.TeaserText,
-                Title = blog.Title
+                Title = blog.Title,
+                Public = blog.Public,
+                Metadata = blog.Metadata,
+                Categories = blog.Categories.Where(c => string.IsNullOrWhiteSpace(c) == false).Select(c => new Category()
+                {
+                    CategoryName = c.Trim(),
+                    CreatedBy_Id = CurrentContext.User.Id,
+                    DateCreated = DateTime.Now
+                }).ToList()
             };
 
             if (blog.Thumbnail != null)
@@ -154,6 +163,7 @@ namespace RonBrogan.Controllers
         public async Task<ActionResult> EditBlog(Guid blogId)
         {
             var blog = await dbContext.BlogPosts
+                .Include(b => b.Categories)
                 .FirstOrDefaultAsync(b => b.Id == blogId);
 
             return View(Mapper.Map<BlogViewModel>(blog));
@@ -165,6 +175,25 @@ namespace RonBrogan.Controllers
             var entity = await dbContext.BlogPosts.FirstOrDefaultAsync(b => b.Id == blogId);
 
             dbContext.Entry(entity).CurrentValues.SetValues(blog);
+
+            var existingCategories = await dbContext.Categories.Where(c => c.Blog_Id == blogId).ToListAsync();
+
+            foreach(var cat in existingCategories)
+            {
+                dbContext.Categories.Remove(cat);
+            }
+
+            foreach(var newCat in blog.Categories.Where(c => string.IsNullOrWhiteSpace(c) == false))
+            {
+                dbContext.Categories.Add(new Category()
+                {
+                    Blog_Id = blogId,
+                    CategoryName = newCat.Trim(),
+                    CreatedBy_Id = CurrentContext.User.Id,
+                    DateCreated = DateTime.Now
+                });
+            }
+
             await dbContext.SaveChangesAsync();
 
             return Redirect("/Admin/ListBlogs");   

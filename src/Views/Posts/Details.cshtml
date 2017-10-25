@@ -1,5 +1,12 @@
 ﻿@model ViewModels.BlogItems.BlogViewModel
 
+@if(string.IsNullOrWhiteSpace(Model.Metadata) == false)
+{
+    @section metadata {
+        <meta name="description" content="@Model.Metadata" />    
+    }
+}
+
 <div class="container">
     <div class="row">
         <div class="column">
@@ -7,6 +14,12 @@
                 <span class="h1">@Model.Title</span>
                 <small>@Model.CreatedBy.FullName - @Model.DateCreated.ToShortDateString()</small>
                 <hr class="accent" />
+                <p class="no-margin">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <a href="/posts?category=@Url.Encode(category)" class="category-tag">@category</a>
+                    }
+                </p>
                 <div>@Html.Raw(Model.BodyHtml)</div>
             </div>
         </div>

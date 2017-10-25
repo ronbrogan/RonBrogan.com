@@ -15,18 +15,37 @@ namespace RonBrogan.Controllers
     {
         private BroganContext db = new BroganContext();
         // GET: Posts
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string category)
         {
-            var posts = await db.BlogPosts
-                .Take(5).ToListAsync();
+            var postQuery = db.BlogPosts
+                .Include(b => b.Categories)
+                .Where(b => b.Public);
 
-            return View(posts.Select(Mapper.Map<BlogViewModel>));
+            if(string.IsNullOrWhiteSpace(category) == false)
+            {
+                postQuery = postQuery.Where(b => b.Categories.Any(c => c.CategoryName == category));
+            }
+
+            var posts = await postQuery.Take(5).ToListAsync();
+
+            var categories = await db.Categories
+                .GroupBy(c => c.CategoryName)
+                .Select(c => c.Key)
+                .ToListAsync();
+                
+            return View(new ExplorePostsViewModel()
+            {
+                Blogs = posts.Select(Mapper.Map<BlogViewModel>),
+                Categories = categories
+            });
         }
 
         [Route("posts/{blogId}")]
         public async Task<ActionResult> Details(Guid blogId)
         {
             var post = await db.BlogPosts
+                .Include(b => b.Categories)
+                .Where(b => b.Public)
                 .FirstOrDefaultAsync(b => b.Id == blogId);
 
             return View("Details", Mapper.Map<BlogViewModel>(post));

@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Authentication\User.cs" />
     <Compile Include="BlogItems\Blog.cs" />
+    <Compile Include="BlogItems\Category.cs" />
     <Compile Include="BroganContext.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="Migrations\201612290749185_InitialMigration.cs" />
@@ -79,6 +80,10 @@
     <Compile Include="Migrations\201706010205507_AddUserFullName.cs" />
     <Compile Include="Migrations\201706010205507_AddUserFullName.Designer.cs">
       <DependentUpon>201706010205507_AddUserFullName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710250345054_CategoriesMetadataAndPublicFlag.cs" />
+    <Compile Include="Migrations\201710250345054_CategoriesMetadataAndPublicFlag.Designer.cs">
+      <DependentUpon>201710250345054_CategoriesMetadataAndPublicFlag.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706010205507_AddUserFullName.resx">
       <DependentUpon>201706010205507_AddUserFullName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710250345054_CategoriesMetadataAndPublicFlag.resx">
+      <DependentUpon>201710250345054_CategoriesMetadataAndPublicFlag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

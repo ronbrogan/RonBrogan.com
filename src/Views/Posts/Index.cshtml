@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ViewModels.BlogItems.BlogViewModel>
+﻿@model ViewModels.BlogItems.ExplorePostsViewModel
 
 
 <div class="container">
@@ -6,9 +6,13 @@
         <div class="column column-25 blog-post-summary column-full-small">
             <h1>Categories</h1>
             <hr class="accent" />
+            @foreach(var cat in Model.Categories)
+            {
+                <a href="/posts?category=@Url.Encode(cat)" class="category-tag">@cat</a>
+            }
         </div>
         <div class="column column-75 column-full-small">
-            @foreach (var blog in Model)
+            @foreach (var blog in Model.Blogs)
             {
                 <div class="blog-post-summary">
                     <h1><a href="/posts/@blog.Id">@blog.Title</a></h1>
@@ -17,6 +21,12 @@
                     {
                         <img src="@blog.ImageUrl" />
                     }
+                    <p class="no-margin">
+                        @foreach(var category in blog.Categories)
+                        {
+                            <a href="/posts?category=@Url.Encode(category)" class="category-tag">@category</a>
+                        }
+                    </p>
                     <p>@blog.TeaserText</p>
                     <div class="creation-stamp">
                         <small>@blog.CreatedBy.FullName - @blog.DateCreated.ToShortDateString()</small>
